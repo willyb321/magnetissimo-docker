@@ -12,8 +12,8 @@ RUN openrc && \
   echo -e 'Y\nY\n' | mix deps.get && \
   createdb.sh && \
   config.sh && \
-  cd assets && npm install && \
   echo -e 'Y\nY\n' | mix ecto.setup && \
+  cd assets && npm install && \
   /etc/init.d/postgresql stop && \
   rm -rf /var/cache/apk/*
 
