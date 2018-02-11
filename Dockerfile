@@ -12,16 +12,15 @@ RUN openrc && \
   echo -e 'Y\nY\n' | mix deps.get && \
   createdb.sh && \
   config.sh && \
-  echo -e 'Y\nY\n' | mix ecto.create && \
-  echo -e 'Y\nY\n' | mix ecto.migrate && \
-  npm install && \
+  cd assets && npm install && \
+  echo -e 'Y\nY\n' | mix ecto.setup && \
   /etc/init.d/postgresql stop && \
   rm -rf /var/cache/apk/*
 
 EXPOSE 4000
 VOLUME ["/var/lib/postgresql"]
 
-CMD ["/bin/sh", "-c", "openrc -o default; /etc/init.d/postgresql restart; cd /magnetissimo && exec mix phoenix.server"]
+CMD ["/bin/sh", "-c", "openrc -o default; /etc/init.d/postgresql restart; cd /magnetissimo && exec iex -S mix phx.server"]
 
 
 
