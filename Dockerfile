@@ -20,7 +20,7 @@ RUN openrc && \
 EXPOSE 4000
 VOLUME ["/var/lib/postgresql"]
 
-CMD ["/bin/sh", "-c", "openrc -o default; /etc/init.d/postgresql restart; cd /magnetissimo && exec iex -S mix phx.server"]
+CMD ["/bin/sh", "-c", "openrc -o default; /etc/init.d/postgresql restart; cd /magnetissimo && iex -S mix phx.server"]
 
 
 
